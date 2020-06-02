@@ -1,0 +1,13 @@
+[Unit]
+Description=Like Prometheus, but for logs.
+Documentation=https://github.com/grafana/loki
+
+[Service]
+Type=simple
+User=<%= $loki::user %>
+ExecStart=<%= $loki::bin_dir %>/loki -config.file <%= $loki::config_dir %>/loki.yaml
+Restart=always
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target
