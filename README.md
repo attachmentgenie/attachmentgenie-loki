@@ -3,7 +3,7 @@
 ![](https://img.shields.io/puppetforge/pdk-version/attachmentgenie/loki.svg?style=popout)
 ![](https://img.shields.io/puppetforge/v/attachmentgenie/loki.svg?style=popout)
 ![](https://img.shields.io/puppetforge/dt/attachmentgenie/loki.svg?style=popout)
-![](https://github.com/attachmentgenie/attachmentgenie-loki/workflows/CI/badge.svg)
+![](https://travis-ci.org/attachmentgenie/attachmentgenie-loki.svg?branch=master)
 [![License](https://img.shields.io/github/license/attachmentgenie/attachmentgenie-loki?stype=popout)](LICENSE)
 
 Deploy and configure attachmentgenie's Loki on a node.
