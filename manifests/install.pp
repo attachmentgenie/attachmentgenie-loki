@@ -8,7 +8,7 @@ class loki::install {
   case $::loki::install_method {
     'archive': {
       $release_file_name = 'loki-linux-amd64'
-      $release_file_name_logcli = 'loki-linux-amd64'
+      $release_file_name_logcli = 'logcli-linux-amd64'
 
       $version_dir = "${loki::data_dir}/loki-${loki::version}"
 
