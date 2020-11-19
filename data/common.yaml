@@ -17,4 +17,4 @@ loki::service_name: loki
 loki::service_provider: systemd
 loki::service_ensure: running
 loki::user: loki
-loki::version: 'v1.5.0'
+loki::version: 'v2.0.0'
