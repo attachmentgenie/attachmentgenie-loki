@@ -7,7 +7,7 @@ loki::archive_source: 'https://github.com/grafana/loki/releases/download/v1.5.0/
 loki::group: loki
 loki::bin_dir: '/usr/local/bin'
 loki::config_dir: '/etc/loki'
-loki::data_dir: '/usr/local/loki_data'
+loki::data_dir: '/var/lib/loki'
 loki::install_method: archive
 loki::manage_service: true
 loki::manage_user: true
