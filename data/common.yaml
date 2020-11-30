@@ -3,7 +3,6 @@ lookup_options:
   '^loki::(.+)_config(s)?_hash$':
     merge:
       strategy: deep
-loki::archive_source: 'https://github.com/grafana/loki/releases/download/v1.5.0/loki-linux-amd64.zip'
 loki::group: loki
 loki::bin_dir: '/usr/local/bin'
 loki::config_dir: '/etc/loki'

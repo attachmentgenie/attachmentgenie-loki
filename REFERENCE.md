@@ -28,12 +28,6 @@ include loki
 
 The following parameters are available in the `loki` class.
 
-##### `archive_source`
-
-Data type: `Optional[Stdlib::HTTPUrl]`
-
-
-
 ##### `bin_dir`
 
 Data type: `Stdlib::Absolutepath`

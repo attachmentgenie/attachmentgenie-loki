@@ -5,7 +5,6 @@
 # @example
 #   include loki
 class loki (
-  Optional[Stdlib::HTTPUrl] $archive_source,
   Stdlib::Absolutepath $bin_dir,
   Stdlib::Absolutepath $config_dir,
   Stdlib::Absolutepath $data_dir,
