@@ -1,9 +1,6 @@
 # @summary A short summary of the purpose of this class
 #
-# A description of what this class does
-#
-# @example
-#   include loki::service
+# @api private
 class loki::service {
   if $::loki::manage_service {
     case $::loki::service_provider {

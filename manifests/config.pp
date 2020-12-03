@@ -2,8 +2,7 @@
 #
 # https://github.com/grafana/loki/blob/v1.5.0/docs/configuration/README.md#configuration-file-reference
 #
-# @example
-#   include loki::config
+# @api private
 class loki::config {
   $config_file = "${loki::config_dir}/loki.yaml"
 

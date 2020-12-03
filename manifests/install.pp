@@ -2,8 +2,7 @@
 #
 # A description of what this class does
 #
-# @example
-#   include loki::install
+# @api private
 class loki::install {
   case $::loki::install_method {
     'archive': {

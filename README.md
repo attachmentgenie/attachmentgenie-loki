@@ -1,4 +1,4 @@
-# Loki
+# attachmentgenie-loki
 
 [![](https://img.shields.io/puppetforge/pdk-version/attachmentgenie/loki.svg?style=popout)](https://forge.puppetlabs.com/attachmentgenie/loki)
 [![](https://img.shields.io/puppetforge/v/attachmentgenie/loki.svg?style=popout)](https://forge.puppetlabs.com/attachmentgenie/loki)
@@ -29,25 +29,32 @@ Currently, Loki can tail logs from two sources: local log files and the systemd 
 
 ## Usage
 
-The simplest way to get started with this module is to add `include loki` to a manifest and create your config settings in Hiera. Additional details and examples are contained in [REFERENCE.md](REFERENCE.md).
+All options and configuration can be done through interacting with the parameters
+on the main example class.
+These are now documented via [Puppet Strings](https://github.com/puppetlabs/puppet-strings)
+
+You can view example usage in [REFERENCE](REFERENCE.md).
 
 ## Reference
 
-This module is documented via
-`pdk bundle exec puppet strings generate --format markdown`.
-Please see [REFERENCE.md](REFERENCE.md) for more info.
-
-## Changelog
-
-[CHANGELOG.md](CHANGELOG.md) is generated prior to each release via
-`pdk bundle exec rake changelog`. This process relies on labels that are applied to each pull request.
+See [REFERENCE](REFERENCE.md).
 
 ## Limitations
 
-At the moment, this module only supports Linux.
+This is where you list OS compatibility, version compatibility, etc.
 
 ## Development
 
-Acceptance tests for this module leverage [puppet_litmus](https://github.com/puppetlabs/puppet_litmus).
-To run the acceptance tests follow the instructions [here](https://github.com/puppetlabs/puppet_litmus/wiki/Tutorial:-use-Litmus-to-execute-acceptance-tests-with-a-sample-module-(MoTD)#install-the-necessary-gems-for-the-module).
-You can also find a tutorial and walkthrough of using Litmus and the PDK on [YouTube](https://www.youtube.com/watch?v=FYfR7ZEGHoE).
+### Running tests
+
+This project contains tests for both rspec-puppet and litmus to verify functionality. For detailed information on using these tools, please see their respective documentation.
+
+#### Testing quickstart:
+
+```
+pdk bundle install
+pdk bundle exec rake 'litmus:provision_list[puppet6]'
+pdk bundle exec rake 'litmus:install_agent[puppet6]'
+pdk bundle exec rake litmus:install_module
+pdk bundle exec rake litmus:acceptance:parallel
+pdk bundle exec rake litmus:tear_down
