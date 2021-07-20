@@ -77,7 +77,7 @@ class loki::config {
 
   # The query_frontend_config configures the Loki query-frontend.
   # [frontend: <query_frontend_config>]
-  if $loki::querier_frontend_config_hash {
+  if $loki::query_frontend_config_hash {
     concat::fragment { 'loki_query_frontend_config':
       target  => $config_file,
       content => $loki::query_frontend_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
