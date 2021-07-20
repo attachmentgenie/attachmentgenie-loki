@@ -24,7 +24,7 @@ A description of what this class does
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 include loki
@@ -32,7 +32,7 @@ include loki
 
 #### Parameters
 
-The following parameters are available in the `loki` class.
+The following parameters are available in the `loki` class:
 
 ##### `bin_dir`
 
@@ -194,6 +194,30 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
+##### `query_frontend_config_hash`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: ``undef``
+
+##### `queryrange_config_hash`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: ``undef``
+
+##### `ruler_config_hash`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: ``undef``
+
 ##### `runtime_config_hash`
 
 Data type: `Optional[Hash]`
@@ -221,6 +245,14 @@ Default value: ``undef``
 ##### `target`
 
 Data type: `Optional[Enum['all', 'querier', 'table-manager', 'ingester', 'distributor']]`
+
+
+
+Default value: ``undef``
+
+##### `tracing_config_hash`
+
+Data type: `Optional[Hash]`
 
 
 
