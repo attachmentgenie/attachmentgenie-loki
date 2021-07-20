@@ -1,6 +1,6 @@
 # @summary A short summary of the purpose of this class
 #
-# https://github.com/grafana/loki/blob/v1.5.0/docs/configuration/README.md#configuration-file-reference
+# https://grafana.com/docs/loki/v2.2.1/configuration/
 #
 # @api private
 class loki::config {
