@@ -1,6 +1,6 @@
 # @summary A short summary of the purpose of this class
 #
-# https://grafana.com/docs/loki/v2.2.1/configuration/
+# https://grafana.com/docs/loki/next/configuration/
 #
 # @api private
 class loki::config {
@@ -164,6 +164,16 @@ class loki::config {
     }
   }
 
+  # Configures the compactor component which compacts index shards for performance.
+  # [compactor: <compactor_config>]
+  if $loki::compactor_config_hash {
+    concat::fragment { 'loki_compactor_config':
+      target  => $config_file,
+      content => $loki::compactor_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      order   => '22',
+    }
+  }
+
   # The frontend_worker_config configures the worker - running within the Loki
   # querier - picking up and executing queries enqueued by the query-frontend.
   # [frontend_worker: <frontend_worker_config>]
@@ -171,7 +181,7 @@ class loki::config {
     concat::fragment { 'loki_frontend_worker_config':
       target  => $config_file,
       content => $loki::frontend_worker_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '22',
+      order   => '23',
     }
   }
 
@@ -181,7 +191,7 @@ class loki::config {
     concat::fragment { 'loki_table_manager_config':
       target  => $config_file,
       content => $loki::table_manager_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '23',
+      order   => '24',
     }
   }
 
@@ -191,7 +201,7 @@ class loki::config {
     concat::fragment { 'loki_runtime_config':
       target  => $config_file,
       content => $loki::runtime_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '24',
+      order   => '25',
     }
   }
 
@@ -201,7 +211,7 @@ class loki::config {
     concat::fragment { 'loki_tracing_config':
       target  => $config_file,
       content => $loki::tracing_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '25',
+      order   => '26',
     }
   }
 }

@@ -146,6 +146,14 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
+##### `compactor_config_hash`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: ``undef``
+
 ##### `distributor_config_hash`
 
 Data type: `Optional[Hash]`
