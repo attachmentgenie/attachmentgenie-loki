@@ -1,6 +1,6 @@
 # @summary A short summary of the purpose of this class
 #
-# https://github.com/grafana/loki/blob/v1.5.0/docs/configuration/README.md#configuration-file-reference
+# https://grafana.com/docs/loki/next/configuration/
 #
 # @api private
 class loki::config {
@@ -75,6 +75,37 @@ class loki::config {
     }
   }
 
+  # The query_frontend_config configures the Loki query-frontend.
+  # [frontend: <query_frontend_config>]
+  if $loki::query_frontend_config_hash {
+    concat::fragment { 'loki_query_frontend_config':
+      target  => $config_file,
+      content => $loki::query_frontend_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      order   => '13',
+    }
+  }
+
+  # The queryrange_config configures the query splitting and caching in the Loki
+  # query-frontend.
+  # [query_range: <queryrange_config>]
+  if $loki::queryrange_config_hash {
+    concat::fragment { 'loki_queryrange_config':
+      target  => $config_file,
+      content => $loki::queryrange_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      order   => '14',
+    }
+  }
+
+  # The ruler_config configures the Loki ruler.
+  # [ruler: <ruler_config>]
+  if $loki::ruler_config_hash {
+    concat::fragment { 'loki_ruler_config':
+      target  => $config_file,
+      content => $loki::ruler_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      order   => '15',
+    }
+  }
+
   # Configures how the distributor will connect to ingesters. Only appropriate
   # when running all modules, the distributor, or the querier.
   # [ingester_client: <ingester_client_config>]
@@ -82,7 +113,7 @@ class loki::config {
     concat::fragment { 'loki_ingester_client_config':
       target  => $config_file,
       content => $loki::ingester_client_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '13',
+      order   => '16',
     }
   }
 
@@ -93,7 +124,7 @@ class loki::config {
     concat::fragment { 'loki_ingester_config':
       target  => $config_file,
       content => $loki::ingester_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '14',
+      order   => '17',
     }
   }
 
@@ -102,7 +133,7 @@ class loki::config {
   concat::fragment { 'loki_storage_config':
     target  => $config_file,
     content => $loki::storage_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-    order   => '15',
+    order   => '18',
   }
 
   # Configures how Loki will store data in the specific store.
@@ -111,7 +142,7 @@ class loki::config {
     concat::fragment { 'loki_chunk_store_config':
       target  => $config_file,
       content => $loki::chunk_store_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '16',
+      order   => '19',
     }
   }
 
@@ -120,7 +151,7 @@ class loki::config {
   concat::fragment { 'loki_schema_config':
     target  => $config_file,
     content => $loki::schema_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-    order   => '17',
+    order   => '20',
   }
 
   # Configures limits per-tenant or globally
@@ -129,7 +160,17 @@ class loki::config {
     concat::fragment { 'loki_limits_config':
       target  => $config_file,
       content => $loki::limits_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '18',
+      order   => '21',
+    }
+  }
+
+  # Configures the compactor component which compacts index shards for performance.
+  # [compactor: <compactor_config>]
+  if $loki::compactor_config_hash {
+    concat::fragment { 'loki_compactor_config':
+      target  => $config_file,
+      content => $loki::compactor_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      order   => '22',
     }
   }
 
@@ -140,7 +181,7 @@ class loki::config {
     concat::fragment { 'loki_frontend_worker_config':
       target  => $config_file,
       content => $loki::frontend_worker_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '19',
+      order   => '23',
     }
   }
 
@@ -150,17 +191,27 @@ class loki::config {
     concat::fragment { 'loki_table_manager_config':
       target  => $config_file,
       content => $loki::table_manager_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '20',
+      order   => '24',
     }
   }
 
   # Configuration for "runtime config" module, responsible for reloading runtime configuration file.
   # [runtime_config: <runtime_config>]
   if $loki::runtime_config_hash {
-    concat::fragment { 'runtime_config_config':
+    concat::fragment { 'loki_runtime_config':
       target  => $config_file,
       content => $loki::runtime_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
-      order   => '21',
+      order   => '25',
+    }
+  }
+
+  # Configuration for tracing
+  # [tracing: <tracing_config>]
+  if $loki::tracing_config_hash {
+    concat::fragment { 'loki_tracing_config':
+      target  => $config_file,
+      content => $loki::tracing_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      order   => '26',
     }
   }
 }
