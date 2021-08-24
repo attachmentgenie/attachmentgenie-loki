@@ -6,8 +6,16 @@
 class loki::config {
   $config_file = "${loki::config_dir}/loki.yaml"
 
+  if $::loki::manage_user {
+    File[$loki::config_dir] {
+      require => [Group['loki'],User['loki']],
+    }
+  }
+
   file { $loki::config_dir:
     ensure => directory,
+    group  => $::loki::group,
+    owner  => $::loki::user,
   }
   -> concat { $config_file:
     ensure => present,
