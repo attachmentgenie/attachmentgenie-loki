@@ -18,13 +18,13 @@
 
 ## Classes
 
-### `loki`
+### <a name="loki"></a>`loki`
 
 A description of what this class does
 
 #### Examples
 
-#####
+##### 
 
 ```puppet
 include loki
@@ -34,103 +34,137 @@ include loki
 
 The following parameters are available in the `loki` class:
 
-##### `bin_dir`
+* [`bin_dir`](#bin_dir)
+* [`config_dir`](#config_dir)
+* [`data_dir`](#data_dir)
+* [`group`](#group)
+* [`install_method`](#install_method)
+* [`manage_service`](#manage_service)
+* [`manage_user`](#manage_user)
+* [`package_name`](#package_name)
+* [`package_version`](#package_version)
+* [`schema_config_hash`](#schema_config_hash)
+* [`service_name`](#service_name)
+* [`service_provider`](#service_provider)
+* [`service_ensure`](#service_ensure)
+* [`storage_config_hash`](#storage_config_hash)
+* [`user`](#user)
+* [`version`](#version)
+* [`auth_enabled`](#auth_enabled)
+* [`chunk_store_config_hash`](#chunk_store_config_hash)
+* [`compactor_config_hash`](#compactor_config_hash)
+* [`distributor_config_hash`](#distributor_config_hash)
+* [`frontend_worker_config_hash`](#frontend_worker_config_hash)
+* [`ingester_client_config_hash`](#ingester_client_config_hash)
+* [`ingester_config_hash`](#ingester_config_hash)
+* [`limits_config_hash`](#limits_config_hash)
+* [`querier_config_hash`](#querier_config_hash)
+* [`query_frontend_config_hash`](#query_frontend_config_hash)
+* [`queryrange_config_hash`](#queryrange_config_hash)
+* [`ruler_config_hash`](#ruler_config_hash)
+* [`runtime_config_hash`](#runtime_config_hash)
+* [`server_config_hash`](#server_config_hash)
+* [`table_manager_config_hash`](#table_manager_config_hash)
+* [`target`](#target)
+* [`tracing_config_hash`](#tracing_config_hash)
+
+##### <a name="bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### `config_dir`
+##### <a name="config_dir"></a>`config_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### `data_dir`
+##### <a name="data_dir"></a>`data_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### `group`
+##### <a name="group"></a>`group`
 
 Data type: `String[1]`
 
 
 
-##### `install_method`
+##### <a name="install_method"></a>`install_method`
 
 Data type: `Enum['archive','package']`
 
 
 
-##### `manage_service`
+##### <a name="manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 
 
-##### `manage_user`
+##### <a name="manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
 
 
-##### `package_name`
+##### <a name="package_name"></a>`package_name`
 
 Data type: `String[1]`
 
 
 
-##### `package_version`
+##### <a name="package_version"></a>`package_version`
 
 Data type: `String[1]`
 
 
 
-##### `schema_config_hash`
+##### <a name="schema_config_hash"></a>`schema_config_hash`
 
 Data type: `Hash`
 
 
 
-##### `service_name`
+##### <a name="service_name"></a>`service_name`
 
 Data type: `String[1]`
 
 
 
-##### `service_provider`
+##### <a name="service_provider"></a>`service_provider`
 
 Data type: `Enum['systemd']`
 
 
 
-##### `service_ensure`
+##### <a name="service_ensure"></a>`service_ensure`
 
 Data type: `Enum['running','stopped']`
 
 
 
-##### `storage_config_hash`
+##### <a name="storage_config_hash"></a>`storage_config_hash`
 
 Data type: `Hash`
 
 
 
-##### `user`
+##### <a name="user"></a>`user`
 
 Data type: `String[1]`
 
 
 
-##### `version`
+##### <a name="version"></a>`version`
 
 Data type: `String[1]`
 
 
 
-##### `auth_enabled`
+##### <a name="auth_enabled"></a>`auth_enabled`
 
 Data type: `Optional[Boolean]`
 
@@ -138,7 +172,7 @@ Data type: `Optional[Boolean]`
 
 Default value: ``undef``
 
-##### `chunk_store_config_hash`
+##### <a name="chunk_store_config_hash"></a>`chunk_store_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -146,7 +180,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `compactor_config_hash`
+##### <a name="compactor_config_hash"></a>`compactor_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -154,7 +188,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `distributor_config_hash`
+##### <a name="distributor_config_hash"></a>`distributor_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -162,7 +196,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `frontend_worker_config_hash`
+##### <a name="frontend_worker_config_hash"></a>`frontend_worker_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -170,7 +204,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `ingester_client_config_hash`
+##### <a name="ingester_client_config_hash"></a>`ingester_client_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -178,7 +212,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `ingester_config_hash`
+##### <a name="ingester_config_hash"></a>`ingester_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -186,7 +220,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `limits_config_hash`
+##### <a name="limits_config_hash"></a>`limits_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -194,7 +228,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `querier_config_hash`
+##### <a name="querier_config_hash"></a>`querier_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -202,7 +236,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `query_frontend_config_hash`
+##### <a name="query_frontend_config_hash"></a>`query_frontend_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -210,7 +244,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `queryrange_config_hash`
+##### <a name="queryrange_config_hash"></a>`queryrange_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -218,7 +252,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `ruler_config_hash`
+##### <a name="ruler_config_hash"></a>`ruler_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -226,7 +260,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `runtime_config_hash`
+##### <a name="runtime_config_hash"></a>`runtime_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -234,7 +268,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `server_config_hash`
+##### <a name="server_config_hash"></a>`server_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -242,7 +276,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `table_manager_config_hash`
+##### <a name="table_manager_config_hash"></a>`table_manager_config_hash`
 
 Data type: `Optional[Hash]`
 
@@ -250,7 +284,7 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
-##### `target`
+##### <a name="target"></a>`target`
 
 Data type: `Optional[Enum['all', 'querier', 'table-manager', 'ingester', 'distributor']]`
 
@@ -258,7 +292,7 @@ Data type: `Optional[Enum['all', 'querier', 'table-manager', 'ingester', 'distri
 
 Default value: ``undef``
 
-##### `tracing_config_hash`
+##### <a name="tracing_config_hash"></a>`tracing_config_hash`
 
 Data type: `Optional[Hash]`
 

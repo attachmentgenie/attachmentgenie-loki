@@ -6,7 +6,7 @@
 [![](https://travis-ci.org/attachmentgenie/attachmentgenie-loki.svg?branch=master)](https://travis-ci.org/attachmentgenie/attachmentgenie-loki)
 [![License](https://img.shields.io/github/license/attachmentgenie/attachmentgenie-loki?stype=popout)](https://github.com/attachmentgenie/attachmentgenie-loki/blob/master/LICENSE)
 
-Deploy and configure attachmentgenie's Loki on a node.
+Deploy and configure loki on a node.
 
 - [Description](#description)
 - [Usage](#usage)
