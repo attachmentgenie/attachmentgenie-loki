@@ -3,7 +3,7 @@
 [![](https://img.shields.io/puppetforge/pdk-version/attachmentgenie/loki.svg?style=popout)](https://forge.puppetlabs.com/attachmentgenie/loki)
 [![](https://img.shields.io/puppetforge/v/attachmentgenie/loki.svg?style=popout)](https://forge.puppetlabs.com/attachmentgenie/loki)
 [![](https://img.shields.io/puppetforge/dt/attachmentgenie/loki.svg?style=popout)](https://forge.puppetlabs.com/attachmentgenie/loki)
-[![](https://travis-ci.org/attachmentgenie/attachmentgenie-loki.svg?branch=master)](https://travis-ci.org/attachmentgenie/attachmentgenie-loki)
+[![Spec Tests](https://github.com/attachmentgenie/attachmentgenie-loki/actions/workflows/spec.yml/badge.svg)](https://github.com/attachmentgenie/attachmentgenie-loki/actions/workflows/spec.yml)
 [![License](https://img.shields.io/github/license/attachmentgenie/attachmentgenie-loki?stype=popout)](https://github.com/attachmentgenie/attachmentgenie-loki/blob/master/LICENSE)
 
 Deploy and configure loki on a node.
@@ -30,7 +30,7 @@ Currently, Loki can tail logs from two sources: local log files and the systemd 
 ## Usage
 
 All options and configuration can be done through interacting with the parameters
-on the main example class.
+on the main loki class.
 These are now documented via [Puppet Strings](https://github.com/puppetlabs/puppet-strings)
 
 You can view example usage in [REFERENCE](REFERENCE.md).
