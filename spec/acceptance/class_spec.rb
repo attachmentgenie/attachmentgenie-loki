@@ -24,7 +24,7 @@ PUPPETCODE
   end
 
   describe file('/var/lib/loki') do
-    it { is_expected.to be_file }
+    it { is_expected.to be_directory }
   end
 
   describe service('loki') do
