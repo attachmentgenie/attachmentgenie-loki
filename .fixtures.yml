@@ -6,7 +6,7 @@ fixtures:
     archive: 'puppet/archive'
     concat: 'puppetlabs/concat'
     promtail: 'grafana/promtail'
-    systemd: 'camptocamp/systemd'
+    systemd: 'puppet/systemd'
     stdlib: 'puppetlabs/stdlib'
   repositories:
     facts: 'https://github.com/puppetlabs/puppetlabs-facts.git'
