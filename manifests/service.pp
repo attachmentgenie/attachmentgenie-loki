@@ -5,9 +5,11 @@ class loki::service {
   if $::loki::manage_service {
     case $::loki::service_provider {
       'systemd': {
-        ::systemd::unit_file { "${::loki::service_name}.service":
-          content => epp('loki/loki.service.epp'),
-          before  => Service['loki'],
+        if $::loki::manage_unit_file {
+          ::systemd::unit_file { "${::loki::service_name}.service":
+            content => epp('loki/loki.service.epp'),
+            before  => Service['loki'],
+          }
         }
       }
       default: {
