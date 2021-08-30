@@ -9,7 +9,6 @@ loki::config_dir: '/etc/loki'
 loki::data_dir: '/var/lib/loki'
 loki::install_method: archive
 loki::manage_service: true
-loki::manage_user: true
 loki::package_name: loki
 loki::package_version: present
 loki::service_name: loki

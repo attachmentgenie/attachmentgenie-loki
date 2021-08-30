@@ -11,7 +11,7 @@ class loki (
   String[1] $group,
   Enum['archive','package'] $install_method,
   Boolean $manage_service,
-  Boolean $manage_user,
+  Boolean $manage_user = $install_method ? { 'archive' => true, 'package' => false },
   String[1] $package_name,
   String[1] $package_version,
   Hash $schema_config_hash,
