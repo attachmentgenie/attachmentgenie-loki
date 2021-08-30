@@ -4,7 +4,10 @@ require 'spec_helper_acceptance'
 
 describe 'with default parameters ', if: ['debian', 'redhat', 'ubuntu'].include?(os[:family]) do
   pp = <<-PUPPETCODE
-  class{ 'loki':
+  package { 'unzip':
+    ensure => present,
+  }
+  -> class{ 'loki':
     auth_enabled                => false,
     schema_config_hash          => {'schema_config' => {'configs' => [{'from' => '2020-05-15', 'store' => 'boltdb', 'object_store' => 'filesystem', 'schema' => 'v11', 'index' =>{'prefix' => 'index_', 'period' => '168h'}}]}},
     storage_config_hash         => {'storage_config' => { 'boltdb' => { 'directory' => '/var/lib/loki/index',}, 'filesystem' => {'directory' => '/var/lib/loki/chunks',},},},
