@@ -35,6 +35,20 @@ These are now documented via [Puppet Strings](https://github.com/puppetlabs/pupp
 
 You can view example usage in [REFERENCE](REFERENCE.md).
 
+### Minimal example
+
+the following code creates a standalone loki instance (not desinged for production):
+
+```puppet
+
+class{ 'loki':
+  auth_enabled                => false,
+  schema_config_hash          => {'schema_config' => {'configs' => [{'from' => '2020-05-15', 'store' => 'boltdb', 'object_store' => 'filesystem', 'schema' => 'v11', 'index' =>{'prefix' => 'index_', 'period' => '168h'}}]}},
+  storage_config_hash         => {'storage_config' => { 'boltdb' => { 'directory' => '/var/lib/loki/index',}, 'filesystem' => {'directory' => '/var/lib/loki/chunks',},},},
+  server_config_hash          => {'server' => {'http_listen_port' => 3100, 'http_listen_address' => $facts['networking']['ip']},},
+  ingester_client_config_hash => {'ingester' => { 'lifecycler' => {'interface_names' => [$facts['networking']['primary']], 'address' => '127.0.0.1', 'ring' =>{'kvstore' =>{'store' => 'inmemory'}, 'replication_factor' => 1}}}},
+}
+```
 ## Reference
 
 See [REFERENCE](REFERENCE.md).
