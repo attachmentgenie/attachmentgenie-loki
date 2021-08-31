@@ -24,10 +24,36 @@ A description of what this class does
 
 #### Examples
 
-##### 
+##### Minimal example, creates a standalone loki instance (not desinged for production).
 
 ```puppet
-include loki
+class{ 'loki':
+  auth_enabled                => false,
+  schema_config_hash          => {'schema_config' => {
+                                    'configs' => [{
+                                      'from'         => '2020-05-15',
+                                      'store'        => 'boltdb',
+                                      'object_store' => 'filesystem',
+                                      'schema'       => 'v11',
+                                      'index'        => {'prefix' => 'index_', 'period' => '168h'},
+                                    }]
+                                  }},
+  storage_config_hash         => {'storage_config' => {
+                                    'boltdb'     => { 'directory' => '/var/lib/loki/index'},
+                                    'filesystem' => {'directory' => '/var/lib/loki/chunks'},
+                                  }},
+  server_config_hash          => {'server' => {
+                                    'http_listen_port'    => 3100,
+                                    'http_listen_address' => $facts['networking']['ip']},
+                                  },
+  ingester_client_config_hash => {'ingester' => {
+                                    'lifecycler' => {
+                                        'interface_names' => [$facts['networking']['primary']],
+                                        'address'         => '127.0.0.1',
+                                        'ring'            => {'kvstore' =>{'store' => 'inmemory'}, 'replication_factor' => 1},
+                                    }
+                                  }},
+}
 ```
 
 #### Parameters
@@ -40,7 +66,6 @@ The following parameters are available in the `loki` class:
 * [`group`](#group)
 * [`install_method`](#install_method)
 * [`manage_service`](#manage_service)
-* [`manage_user`](#manage_user)
 * [`package_name`](#package_name)
 * [`package_version`](#package_version)
 * [`schema_config_hash`](#schema_config_hash)
@@ -58,6 +83,8 @@ The following parameters are available in the `loki` class:
 * [`ingester_client_config_hash`](#ingester_client_config_hash)
 * [`ingester_config_hash`](#ingester_config_hash)
 * [`limits_config_hash`](#limits_config_hash)
+* [`manage_user`](#manage_user)
+* [`manage_unit_file`](#manage_unit_file)
 * [`querier_config_hash`](#querier_config_hash)
 * [`query_frontend_config_hash`](#query_frontend_config_hash)
 * [`queryrange_config_hash`](#queryrange_config_hash)
@@ -99,12 +126,6 @@ Data type: `Enum['archive','package']`
 
 
 ##### <a name="manage_service"></a>`manage_service`
-
-Data type: `Boolean`
-
-
-
-##### <a name="manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
@@ -227,6 +248,22 @@ Data type: `Optional[Hash]`
 
 
 Default value: ``undef``
+
+##### <a name="manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+
+
+Default value: `$install_method`
+
+##### <a name="manage_unit_file"></a>`manage_unit_file`
+
+Data type: `Boolean`
+
+
+
+Default value: `$install_method`
 
 ##### <a name="querier_config_hash"></a>`querier_config_hash`
 
