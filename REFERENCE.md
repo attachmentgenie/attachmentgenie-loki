@@ -94,6 +94,7 @@ The following parameters are available in the `loki` class:
 * [`table_manager_config_hash`](#table_manager_config_hash)
 * [`target`](#target)
 * [`tracing_config_hash`](#tracing_config_hash)
+* [`memberlist_config_hash`](#memberlist_config_hash)
 
 ##### <a name="bin_dir"></a>`bin_dir`
 
@@ -330,6 +331,14 @@ Data type: `Optional[Enum['all', 'querier', 'table-manager', 'ingester', 'distri
 Default value: ``undef``
 
 ##### <a name="tracing_config_hash"></a>`tracing_config_hash`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: ``undef``
+
+##### <a name="memberlist_config_hash"></a>`memberlist_config_hash`
 
 Data type: `Optional[Hash]`
 
