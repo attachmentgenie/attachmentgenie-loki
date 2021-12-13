@@ -65,6 +65,7 @@ class loki (
   Optional[Hash] $table_manager_config_hash = undef,
   Optional[Enum['all', 'querier', 'table-manager', 'ingester', 'distributor']] $target = undef,
   Optional[Hash] $tracing_config_hash = undef,
+  Optional[Hash] $memberlist_config_hash = undef,
 ) {
   anchor { 'loki::begin': }
 -> class{ '::loki::install': }

@@ -222,4 +222,14 @@ class loki::config {
       order   => '26',
     }
   }
+
+    # Configuration for memberlist
+  # [memberlist: <memberlist_config>]
+  if $loki::memberlist_config_hash {
+    concat::fragment { 'loki_memberlist_config':
+      target  => $config_file,
+      content => $loki::memberlist_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      order   => '27',
+    }
+  }
 }
