@@ -66,7 +66,7 @@ class loki::install {
           ensure  => link,
           target  => $binary_path,
           require => File[$binary_path],
-          notify  => Service['loki'],
+          notify  => $loki::service::service_notify,
         ;
       }
 
@@ -80,7 +80,7 @@ class loki::install {
           ensure  => link,
           target  => $binary_path_logcli,
           require => File[$binary_path_logcli],
-          notify  => Service['loki'],
+          notify  => $loki::service::service_notify,
         ;
       }
     }
