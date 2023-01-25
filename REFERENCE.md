@@ -86,6 +86,7 @@ The following parameters are available in the `loki` class:
 * [`manage_user`](#manage_user)
 * [`manage_unit_file`](#manage_unit_file)
 * [`querier_config_hash`](#querier_config_hash)
+* [`query_scheduler_config_hash`](#query_scheduler_config_hash)
 * [`query_frontend_config_hash`](#query_frontend_config_hash)
 * [`queryrange_config_hash`](#queryrange_config_hash)
 * [`ruler_config_hash`](#ruler_config_hash)
@@ -274,6 +275,14 @@ Data type: `Optional[Hash]`
 
 Default value: ``undef``
 
+##### <a name="query_scheduler_config_hash"></a>`query_scheduler_config_hash`
+
+Data type: `Optional[Hash]`
+
+
+
+Default value: ``undef``
+
 ##### <a name="query_frontend_config_hash"></a>`query_frontend_config_hash`
 
 Data type: `Optional[Hash]`
@@ -324,7 +333,7 @@ Default value: ``undef``
 
 ##### <a name="target"></a>`target`
 
-Data type: `Optional[Enum['all', 'querier', 'table-manager', 'ingester', 'distributor']]`
+Data type: `Optional[Enum['all', 'querier', 'query-scheduler', 'table-manager', 'ingester', 'distributor']]`
 
 
 

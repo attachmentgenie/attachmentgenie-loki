@@ -29,7 +29,7 @@ class loki::config {
   }
 
   # The module to run Loki with. Supported values
-  # all, querier, table-manager, ingester, distributor
+  # all, querier, query-scheduler, table-manager, ingester, distributor
   # [target: <string> | default = "all"]
   if $loki::target {
     concat::fragment { 'loki_config_target':
@@ -230,6 +230,17 @@ class loki::config {
       target  => $config_file,
       content => $loki::memberlist_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
       order   => '27',
+    }
+  }
+
+  # Configures the query_scheduler. Only appropriate when running all modules or
+  # just the query-scheduler.
+  # [query_scheduler: <query_scheduler_config>]
+  if $loki::query_scheduler_config_hash {
+    concat::fragment { 'loki_query_scheduler_config':
+      target  => $config_file,
+      content => $loki::query_scheduler_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      order   => '28',
     }
   }
 }
