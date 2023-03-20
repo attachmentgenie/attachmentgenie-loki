@@ -64,7 +64,7 @@ class loki (
   Optional[Hash] $runtime_config_hash = undef,
   Optional[Hash] $server_config_hash = undef,
   Optional[Hash] $table_manager_config_hash = undef,
-  Optional[Enum['all', 'querier', 'query-scheduler', 'table-manager', 'ingester', 'distributor']] $target = undef,
+  Optional[Enum['all', 'compactor', 'distributor', 'ingester', 'querier', 'query-scheduler', 'ingester-querier', 'query-frontend', 'index-gateway', 'ruler', 'table-manager', 'read', 'write']] $target = undef,
   Optional[Hash] $tracing_config_hash = undef,
   Optional[Hash] $memberlist_config_hash = undef,
 ) {
