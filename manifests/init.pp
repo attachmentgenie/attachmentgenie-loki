@@ -48,7 +48,7 @@ class loki (
   String[1] $version,
   Optional[Boolean] $auth_enabled = undef,
   Optional[Hash] $chunk_store_config_hash = undef,
-  Optional[Hash] $loki::common_config_hash = undef,
+  Optional[Hash] $common_config_hash = undef,
   Optional[Hash] $compactor_config_hash = undef,
   Optional[Hash] $distributor_config_hash = undef,
   Optional[Hash] $frontend_worker_config_hash = undef,
