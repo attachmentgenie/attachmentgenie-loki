@@ -68,6 +68,12 @@ class loki (
   Optional[Hash] $tracing_config_hash = undef,
   Optional[Hash] $memberlist_config_hash = undef,
 ) {
+  if $manage_service {
+    $service_notify = [Service['loki']]
+  } else {
+    $service_notify = []
+  }
+
   anchor { 'loki::begin': }
 -> class{ '::loki::install': }
 -> class{ '::loki::config': }
