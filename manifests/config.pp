@@ -52,6 +52,16 @@ class loki::config {
     order   => '03',
   }
 
+  # Configure common settings section
+  # [common: <common_config>]
+  if $loki::common_config_hash {
+    concat::fragment { 'loki_common_config':
+      target  => $config_file,
+      content => $loki::common_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      order   => '09',
+    }
+  }
+
   # Configures the server of the launched module(s).
   # [server: <server_config>]
   if $loki::server_config_hash {

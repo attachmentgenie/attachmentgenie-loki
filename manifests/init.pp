@@ -5,6 +5,9 @@
 # @example Minimal example, creates a standalone loki instance (not desinged for production).
 #     class{ 'loki':
 #       auth_enabled                => false,
+#       common_config_hash          => {'common' => {
+#                                         'path_prefix' => '/var/lib/loki',
+#                                      }},
 #       schema_config_hash          => {'schema_config' => {
 #                                         'configs' => [{
 #                                           'from'         => '2020-05-15',
@@ -67,6 +70,7 @@ class loki (
   Optional[Enum['all', 'compactor', 'distributor', 'ingester', 'querier', 'query-scheduler', 'ingester-querier', 'query-frontend', 'index-gateway', 'ruler', 'table-manager', 'read', 'write']] $target = undef,
   Optional[Hash] $tracing_config_hash = undef,
   Optional[Hash] $memberlist_config_hash = undef,
+  Optional[Hash] $common_config_hash = undef,
 ) {
   if $manage_service {
     $service_notify = [Service['loki']]
