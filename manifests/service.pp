@@ -35,8 +35,5 @@ class loki::service {
       name     => $::loki::service_name,
       provider => $::loki::service_provider,
     }
-    $service_notify = [Service['loki']]
-  } else {
-    $service_notify = []
   }
 }
