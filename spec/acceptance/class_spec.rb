@@ -9,6 +9,7 @@ describe 'with default parameters ', if: ['debian', 'redhat', 'ubuntu'].include?
   }
   -> class{ 'loki':
     auth_enabled                => false,
+    common_config_hash          => {'common' => {'path_prefix' => '/var/lib/loki',}},
     schema_config_hash          => {'schema_config' => {'configs' => [{'from' => '2020-05-15', 'store' => 'boltdb', 'object_store' => 'filesystem', 'schema' => 'v11', 'index' =>{'prefix' => 'index_', 'period' => '168h'}}]}},
     storage_config_hash         => {'storage_config' => { 'boltdb' => { 'directory' => '/var/lib/loki/index',}, 'filesystem' => {'directory' => '/var/lib/loki/chunks',},},},
     server_config_hash          => {'server' => {'http_listen_port' => 3100, 'http_listen_address' => $facts['networking']['ip']},},
