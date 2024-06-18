@@ -197,7 +197,7 @@ Version to install.
 
 ##### <a name="-loki--auth_enabled"></a>`auth_enabled`
 
-Data type: `Optional[Boolean]`
+Data type: `Boolean`
 
 Enables authentication
 

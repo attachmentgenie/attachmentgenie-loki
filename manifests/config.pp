@@ -44,7 +44,7 @@ class loki::config {
   # [auth_enabled: <boolean> | default = true]
   concat::fragment { 'loki_config_auth_enabled':
     target  => $config_file,
-    content => "auth_enabled: ${auth_enabled}\n",
+    content => "auth_enabled: ${loki::auth_enabled}\n",
     order   => '03',
   }
 

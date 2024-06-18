@@ -5,6 +5,8 @@
   "summary": "Like Prometheus, but for logs",
   "license": "Apache-2.0",
   "source": "https://github.com/attachmentgenie/attachmentgenie-loki.git",
+  "project_page": "https://github.com/attachmentgenie/attachmentgenie-loki",
+  "issues_url": "https://github.com/attachmentgenie/attachmentgenie-loki/issues",
   "dependencies": [
     {
       "name": "puppet/archive",

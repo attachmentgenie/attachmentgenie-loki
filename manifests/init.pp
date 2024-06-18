@@ -87,7 +87,7 @@ class loki (
   Hash $storage_config_hash,
   String[1] $user,
   String[1] $version,
-  Optional[Boolean] $auth_enabled = true,
+  Boolean $auth_enabled = true,
   Optional[Hash] $chunk_store_config_hash = undef,
   Optional[Hash] $compactor_config_hash = undef,
   Optional[Hash] $distributor_config_hash = undef,
@@ -110,7 +110,7 @@ class loki (
   Optional[Hash] $memberlist_config_hash = undef,
   Optional[Hash] $common_config_hash = undef,
 ) {
-  if $manage_service {
+  if $loki::manage_service {
     $service_notify = [Service['loki']]
   } else {
     $service_notify = []
