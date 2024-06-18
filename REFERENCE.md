@@ -16,6 +16,10 @@
 * `loki::install`: A short summary of the purpose of this class
 * `loki::service`: A short summary of the purpose of this class
 
+### Data types
+
+* [`Loki::Target`](#Loki--Target): List of loki components
+
 ## Classes
 
 ### <a name="loki"></a>`loki`
@@ -29,6 +33,9 @@ A description of what this class does
 ```puppet
 class{ 'loki':
   auth_enabled                => false,
+  common_config_hash          => {'common' => {
+                                    'path_prefix' => '/var/lib/loki',
+                                 }},
   schema_config_hash          => {'schema_config' => {
                                     'configs' => [{
                                       'from'         => '2020-05-15',
@@ -37,22 +44,22 @@ class{ 'loki':
                                       'schema'       => 'v11',
                                       'index'        => {'prefix' => 'index_', 'period' => '168h'},
                                     }]
-                                  }},
+                                 }},
   storage_config_hash         => {'storage_config' => {
                                     'boltdb'     => { 'directory' => '/var/lib/loki/index'},
                                     'filesystem' => {'directory' => '/var/lib/loki/chunks'},
-                                  }},
+                                 }},
   server_config_hash          => {'server' => {
                                     'http_listen_port'    => 3100,
                                     'http_listen_address' => $facts['networking']['ip']},
-                                  },
+                                 },
   ingester_client_config_hash => {'ingester' => {
                                     'lifecycler' => {
                                         'interface_names' => [$facts['networking']['primary']],
                                         'address'         => '127.0.0.1',
                                         'ring'            => {'kvstore' =>{'store' => 'inmemory'}, 'replication_factor' => 1},
                                     }
-                                  }},
+                                 }},
 }
 ```
 
@@ -60,298 +67,315 @@ class{ 'loki':
 
 The following parameters are available in the `loki` class:
 
-* [`bin_dir`](#bin_dir)
-* [`config_dir`](#config_dir)
-* [`data_dir`](#data_dir)
-* [`group`](#group)
-* [`install_method`](#install_method)
-* [`manage_service`](#manage_service)
-* [`package_name`](#package_name)
-* [`package_version`](#package_version)
-* [`schema_config_hash`](#schema_config_hash)
-* [`service_name`](#service_name)
-* [`service_provider`](#service_provider)
-* [`service_ensure`](#service_ensure)
-* [`storage_config_hash`](#storage_config_hash)
-* [`user`](#user)
-* [`version`](#version)
-* [`auth_enabled`](#auth_enabled)
-* [`chunk_store_config_hash`](#chunk_store_config_hash)
-* [`compactor_config_hash`](#compactor_config_hash)
-* [`distributor_config_hash`](#distributor_config_hash)
-* [`frontend_worker_config_hash`](#frontend_worker_config_hash)
-* [`ingester_client_config_hash`](#ingester_client_config_hash)
-* [`ingester_config_hash`](#ingester_config_hash)
-* [`limits_config_hash`](#limits_config_hash)
-* [`manage_user`](#manage_user)
-* [`manage_unit_file`](#manage_unit_file)
-* [`querier_config_hash`](#querier_config_hash)
-* [`query_scheduler_config_hash`](#query_scheduler_config_hash)
-* [`query_frontend_config_hash`](#query_frontend_config_hash)
-* [`queryrange_config_hash`](#queryrange_config_hash)
-* [`ruler_config_hash`](#ruler_config_hash)
-* [`runtime_config_hash`](#runtime_config_hash)
-* [`server_config_hash`](#server_config_hash)
-* [`table_manager_config_hash`](#table_manager_config_hash)
-* [`target`](#target)
-* [`tracing_config_hash`](#tracing_config_hash)
-* [`memberlist_config_hash`](#memberlist_config_hash)
+* [`bin_dir`](#-loki--bin_dir)
+* [`config_dir`](#-loki--config_dir)
+* [`data_dir`](#-loki--data_dir)
+* [`group`](#-loki--group)
+* [`install_method`](#-loki--install_method)
+* [`manage_service`](#-loki--manage_service)
+* [`package_name`](#-loki--package_name)
+* [`package_version`](#-loki--package_version)
+* [`schema_config_hash`](#-loki--schema_config_hash)
+* [`service_name`](#-loki--service_name)
+* [`service_provider`](#-loki--service_provider)
+* [`service_ensure`](#-loki--service_ensure)
+* [`storage_config_hash`](#-loki--storage_config_hash)
+* [`user`](#-loki--user)
+* [`version`](#-loki--version)
+* [`auth_enabled`](#-loki--auth_enabled)
+* [`chunk_store_config_hash`](#-loki--chunk_store_config_hash)
+* [`compactor_config_hash`](#-loki--compactor_config_hash)
+* [`distributor_config_hash`](#-loki--distributor_config_hash)
+* [`frontend_worker_config_hash`](#-loki--frontend_worker_config_hash)
+* [`ingester_client_config_hash`](#-loki--ingester_client_config_hash)
+* [`ingester_config_hash`](#-loki--ingester_config_hash)
+* [`limits_config_hash`](#-loki--limits_config_hash)
+* [`manage_user`](#-loki--manage_user)
+* [`manage_unit_file`](#-loki--manage_unit_file)
+* [`querier_config_hash`](#-loki--querier_config_hash)
+* [`query_scheduler_config_hash`](#-loki--query_scheduler_config_hash)
+* [`query_frontend_config_hash`](#-loki--query_frontend_config_hash)
+* [`query_range_config_hash`](#-loki--query_range_config_hash)
+* [`ruler_config_hash`](#-loki--ruler_config_hash)
+* [`runtime_config_hash`](#-loki--runtime_config_hash)
+* [`server_config_hash`](#-loki--server_config_hash)
+* [`table_manager_config_hash`](#-loki--table_manager_config_hash)
+* [`target`](#-loki--target)
+* [`tracing_config_hash`](#-loki--tracing_config_hash)
+* [`memberlist_config_hash`](#-loki--memberlist_config_hash)
+* [`common_config_hash`](#-loki--common_config_hash)
 
-##### <a name="bin_dir"></a>`bin_dir`
-
-Data type: `Stdlib::Absolutepath`
-
-
-
-##### <a name="config_dir"></a>`config_dir`
+##### <a name="-loki--bin_dir"></a>`bin_dir`
 
 Data type: `Stdlib::Absolutepath`
 
+path to install binary file.
 
-
-##### <a name="data_dir"></a>`data_dir`
+##### <a name="-loki--config_dir"></a>`config_dir`
 
 Data type: `Stdlib::Absolutepath`
 
+path to install configuration file.
 
+##### <a name="-loki--data_dir"></a>`data_dir`
 
-##### <a name="group"></a>`group`
+Data type: `Stdlib::Absolutepath`
+
+path where loki data will be stored.
+
+##### <a name="-loki--group"></a>`group`
 
 Data type: `String[1]`
 
+Group that owns loki files.
 
-
-##### <a name="install_method"></a>`install_method`
+##### <a name="-loki--install_method"></a>`install_method`
 
 Data type: `Enum['archive','package']`
 
+How to install loki.
 
-
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-loki--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
+Manage the loki service.
 
-
-##### <a name="package_name"></a>`package_name`
-
-Data type: `String[1]`
-
-
-
-##### <a name="package_version"></a>`package_version`
+##### <a name="-loki--package_name"></a>`package_name`
 
 Data type: `String[1]`
 
+Name of package to install.
 
+##### <a name="-loki--package_version"></a>`package_version`
 
-##### <a name="schema_config_hash"></a>`schema_config_hash`
+Data type: `String[1]`
+
+Version of package to install.
+
+##### <a name="-loki--schema_config_hash"></a>`schema_config_hash`
 
 Data type: `Hash`
 
+Configures the chunk index schema
 
-
-##### <a name="service_name"></a>`service_name`
+##### <a name="-loki--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
+Name of service to manage.
 
-
-##### <a name="service_provider"></a>`service_provider`
+##### <a name="-loki--service_provider"></a>`service_provider`
 
 Data type: `Enum['systemd']`
 
+Init system that is used.
 
-
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-loki--service_ensure"></a>`service_ensure`
 
 Data type: `Enum['running','stopped']`
 
+The state of the service.
 
-
-##### <a name="storage_config_hash"></a>`storage_config_hash`
+##### <a name="-loki--storage_config_hash"></a>`storage_config_hash`
 
 Data type: `Hash`
 
+The storage_config block configures one of many possible stores for both the index and chunks.
 
-
-##### <a name="user"></a>`user`
-
-Data type: `String[1]`
-
-
-
-##### <a name="version"></a>`version`
+##### <a name="-loki--user"></a>`user`
 
 Data type: `String[1]`
 
+User that owns example files.
 
+##### <a name="-loki--version"></a>`version`
 
-##### <a name="auth_enabled"></a>`auth_enabled`
+Data type: `String[1]`
+
+Version to install.
+
+##### <a name="-loki--auth_enabled"></a>`auth_enabled`
 
 Data type: `Optional[Boolean]`
 
+Enables authentication
 
+Default value: `true`
 
-Default value: ``undef``
-
-##### <a name="chunk_store_config_hash"></a>`chunk_store_config_hash`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: ``undef``
-
-##### <a name="compactor_config_hash"></a>`compactor_config_hash`
+##### <a name="-loki--chunk_store_config_hash"></a>`chunk_store_config_hash`
 
 Data type: `Optional[Hash]`
 
+The chunk_store_config block configures how chunks will be cached
 
+Default value: `undef`
 
-Default value: ``undef``
-
-##### <a name="distributor_config_hash"></a>`distributor_config_hash`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: ``undef``
-
-##### <a name="frontend_worker_config_hash"></a>`frontend_worker_config_hash`
+##### <a name="-loki--compactor_config_hash"></a>`compactor_config_hash`
 
 Data type: `Optional[Hash]`
 
+Configures the compactor component which compacts index shards for performance.
 
+Default value: `undef`
 
-Default value: ``undef``
-
-##### <a name="ingester_client_config_hash"></a>`ingester_client_config_hash`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: ``undef``
-
-##### <a name="ingester_config_hash"></a>`ingester_config_hash`
+##### <a name="-loki--distributor_config_hash"></a>`distributor_config_hash`
 
 Data type: `Optional[Hash]`
 
+Configures the distributor.
 
+Default value: `undef`
 
-Default value: ``undef``
-
-##### <a name="limits_config_hash"></a>`limits_config_hash`
+##### <a name="-loki--frontend_worker_config_hash"></a>`frontend_worker_config_hash`
 
 Data type: `Optional[Hash]`
 
+The frontend_worker_config configures the worker
 
+Default value: `undef`
 
-Default value: ``undef``
+##### <a name="-loki--ingester_client_config_hash"></a>`ingester_client_config_hash`
 
-##### <a name="manage_user"></a>`manage_user`
+Data type: `Optional[Hash]`
+
+Configures how the distributor will connect to ingesters.
+
+Default value: `undef`
+
+##### <a name="-loki--ingester_config_hash"></a>`ingester_config_hash`
+
+Data type: `Optional[Hash]`
+
+The ingester_client block configures how the distributor will connect to ingesters.
+
+Default value: `undef`
+
+##### <a name="-loki--limits_config_hash"></a>`limits_config_hash`
+
+Data type: `Optional[Hash]`
+
+The limits_config block configures global and per-tenant limits in Loki.
+
+Default value: `undef`
+
+##### <a name="-loki--manage_user"></a>`manage_user`
 
 Data type: `Boolean`
 
+Manage loki user and group.
 
+Default value: `$install_method ? { 'archive' => true, 'package' => false`
 
-Default value: `$install_method`
-
-##### <a name="manage_unit_file"></a>`manage_unit_file`
+##### <a name="-loki--manage_unit_file"></a>`manage_unit_file`
 
 Data type: `Boolean`
 
+Manage unit file for service
 
+Default value: `$install_method ? { 'archive' => true, 'package' => false`
 
-Default value: `$install_method`
-
-##### <a name="querier_config_hash"></a>`querier_config_hash`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: ``undef``
-
-##### <a name="query_scheduler_config_hash"></a>`query_scheduler_config_hash`
+##### <a name="-loki--querier_config_hash"></a>`querier_config_hash`
 
 Data type: `Optional[Hash]`
 
+Configures the querier.
 
+Default value: `undef`
 
-Default value: ``undef``
-
-##### <a name="query_frontend_config_hash"></a>`query_frontend_config_hash`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: ``undef``
-
-##### <a name="queryrange_config_hash"></a>`queryrange_config_hash`
+##### <a name="-loki--query_scheduler_config_hash"></a>`query_scheduler_config_hash`
 
 Data type: `Optional[Hash]`
 
+The query_scheduler block configures the Loki query scheduler.
 
+Default value: `undef`
 
-Default value: ``undef``
-
-##### <a name="ruler_config_hash"></a>`ruler_config_hash`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: ``undef``
-
-##### <a name="runtime_config_hash"></a>`runtime_config_hash`
+##### <a name="-loki--query_frontend_config_hash"></a>`query_frontend_config_hash`
 
 Data type: `Optional[Hash]`
 
+The query_frontend block configures the Loki query address.
 
+Default value: `undef`
 
-Default value: ``undef``
-
-##### <a name="server_config_hash"></a>`server_config_hash`
-
-Data type: `Optional[Hash]`
-
-
-
-Default value: ``undef``
-
-##### <a name="table_manager_config_hash"></a>`table_manager_config_hash`
+##### <a name="-loki--query_range_config_hash"></a>`query_range_config_hash`
 
 Data type: `Optional[Hash]`
 
+The query_range block configures the query splitting and caching in the Loki query-frontend.
 
+Default value: `undef`
 
-Default value: ``undef``
-
-##### <a name="target"></a>`target`
-
-Data type: `Optional[Enum['all', 'querier', 'query-scheduler', 'table-manager', 'ingester', 'distributor']]`
-
-
-
-Default value: ``undef``
-
-##### <a name="tracing_config_hash"></a>`tracing_config_hash`
+##### <a name="-loki--ruler_config_hash"></a>`ruler_config_hash`
 
 Data type: `Optional[Hash]`
 
+The ruler block configures the Loki ruler.
 
+Default value: `undef`
 
-Default value: ``undef``
-
-##### <a name="memberlist_config_hash"></a>`memberlist_config_hash`
+##### <a name="-loki--runtime_config_hash"></a>`runtime_config_hash`
 
 Data type: `Optional[Hash]`
 
+Configuration for 'runtime config' module, responsible for reloading runtime configuration file.
 
+Default value: `undef`
 
-Default value: ``undef``
+##### <a name="-loki--server_config_hash"></a>`server_config_hash`
+
+Data type: `Optional[Hash]`
+
+Configures the server of the launched module(s).
+
+Default value: `undef`
+
+##### <a name="-loki--table_manager_config_hash"></a>`table_manager_config_hash`
+
+Data type: `Optional[Hash]`
+
+The table_manager block configures the table manager for retention.
+
+Default value: `undef`
+
+##### <a name="-loki--target"></a>`target`
+
+Data type: `Optional[Loki::Target]`
+
+A comma-separated list of components to run.
+
+Default value: `undef`
+
+##### <a name="-loki--tracing_config_hash"></a>`tracing_config_hash`
+
+Data type: `Optional[Hash]`
+
+Configuration for tracing.,
+
+Default value: `undef`
+
+##### <a name="-loki--memberlist_config_hash"></a>`memberlist_config_hash`
+
+Data type: `Optional[Hash]`
+
+Configuration for memberlist client. Only applies if the selected kvstore is memberlist
+
+Default value: `undef`
+
+##### <a name="-loki--common_config_hash"></a>`common_config_hash`
+
+Data type: `Optional[Hash]`
+
+Common configuration to be shared between multiple modules.
+
+Default value: `undef`
+
+## Data types
+
+### <a name="Loki--Target"></a>`Loki::Target`
+
+List of loki components
+
+Alias of `Enum['all', 'compactor', 'distributor', 'ingester', 'querier', 'query-scheduler', 'ingester-querier', 'query-frontend', 'index-gateway', 'ruler', 'table-manager', 'read', 'write']`
 

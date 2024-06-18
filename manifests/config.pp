@@ -6,7 +6,7 @@
 class loki::config {
   $config_file = "${loki::config_dir}/loki.yaml"
 
-  if $::loki::manage_user {
+  if $loki::manage_user {
     File[$loki::config_dir] {
       require => [Group['loki'],User['loki']],
     }
@@ -14,8 +14,8 @@ class loki::config {
 
   file { $loki::config_dir:
     ensure => directory,
-    group  => $::loki::group,
-    owner  => $::loki::user,
+    group  => $loki::group,
+    owner  => $loki::user,
   }
   -> concat { $config_file:
     ensure => present,
@@ -42,13 +42,9 @@ class loki::config {
   # Enables authentication through the X-Scope-OrgID header, which must be present
   # if true. If false, the OrgID will always be set to "fake".
   # [auth_enabled: <boolean> | default = true]
-  $_auth_enabled = $loki::auth_enabled ? {
-    undef          => true,
-    default        => $loki::auth_enabled,
-  }
   concat::fragment { 'loki_config_auth_enabled':
     target  => $config_file,
-    content => "auth_enabled: ${_auth_enabled}\n",
+    content => "auth_enabled: ${auth_enabled}\n",
     order   => '03',
   }
 
@@ -106,10 +102,10 @@ class loki::config {
   # The queryrange_config configures the query splitting and caching in the Loki
   # query-frontend.
   # [query_range: <queryrange_config>]
-  if $loki::queryrange_config_hash {
+  if $loki::query_range_config_hash {
     concat::fragment { 'loki_queryrange_config':
       target  => $config_file,
-      content => $loki::queryrange_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::query_range_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
       order   => '14',
     }
   }
@@ -233,7 +229,7 @@ class loki::config {
     }
   }
 
-    # Configuration for memberlist
+  # Configuration for memberlist
   # [memberlist: <memberlist_config>]
   if $loki::memberlist_config_hash {
     concat::fragment { 'loki_memberlist_config':
