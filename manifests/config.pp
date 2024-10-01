@@ -53,7 +53,7 @@ class loki::config {
   if $loki::common_config_hash {
     concat::fragment { 'loki_common_config':
       target  => $config_file,
-      content => $loki::common_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::common_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '09',
     }
   }
@@ -63,7 +63,7 @@ class loki::config {
   if $loki::server_config_hash {
     concat::fragment { 'loki_server_config':
       target  => $config_file,
-      content => $loki::server_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::server_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '10',
     }
   }
@@ -73,7 +73,7 @@ class loki::config {
   if $loki::distributor_config_hash {
     concat::fragment { 'loki_distributor_config':
       target  => $config_file,
-      content => $loki::distributor_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::distributor_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '11',
     }
   }
@@ -84,7 +84,7 @@ class loki::config {
   if $loki::querier_config_hash {
     concat::fragment { 'loki_querier_config':
       target  => $config_file,
-      content => $loki::querier_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::querier_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '12',
     }
   }
@@ -94,7 +94,7 @@ class loki::config {
   if $loki::query_frontend_config_hash {
     concat::fragment { 'loki_query_frontend_config':
       target  => $config_file,
-      content => $loki::query_frontend_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::query_frontend_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '13',
     }
   }
@@ -105,7 +105,7 @@ class loki::config {
   if $loki::query_range_config_hash {
     concat::fragment { 'loki_queryrange_config':
       target  => $config_file,
-      content => $loki::query_range_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::query_range_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '14',
     }
   }
@@ -115,7 +115,7 @@ class loki::config {
   if $loki::ruler_config_hash {
     concat::fragment { 'loki_ruler_config':
       target  => $config_file,
-      content => $loki::ruler_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::ruler_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '15',
     }
   }
@@ -126,7 +126,7 @@ class loki::config {
   if $loki::ingester_client_config_hash {
     concat::fragment { 'loki_ingester_client_config':
       target  => $config_file,
-      content => $loki::ingester_client_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::ingester_client_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '16',
     }
   }
@@ -137,7 +137,7 @@ class loki::config {
   if $loki::ingester_config_hash {
     concat::fragment { 'loki_ingester_config':
       target  => $config_file,
-      content => $loki::ingester_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::ingester_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '17',
     }
   }
@@ -146,7 +146,7 @@ class loki::config {
   # [storage_config: <storage_config>]
   concat::fragment { 'loki_storage_config':
     target  => $config_file,
-    content => $loki::storage_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+    content => $loki::storage_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
     order   => '18',
   }
 
@@ -155,7 +155,7 @@ class loki::config {
   if $loki::chunk_store_config_hash {
     concat::fragment { 'loki_chunk_store_config':
       target  => $config_file,
-      content => $loki::chunk_store_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::chunk_store_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '19',
     }
   }
@@ -164,7 +164,7 @@ class loki::config {
   # [schema_config: <schema_config>]
   concat::fragment { 'loki_schema_config':
     target  => $config_file,
-    content => $loki::schema_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+    content => $loki::schema_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
     order   => '20',
   }
 
@@ -173,7 +173,7 @@ class loki::config {
   if $loki::limits_config_hash {
     concat::fragment { 'loki_limits_config':
       target  => $config_file,
-      content => $loki::limits_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::limits_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '21',
     }
   }
@@ -183,7 +183,7 @@ class loki::config {
   if $loki::compactor_config_hash {
     concat::fragment { 'loki_compactor_config':
       target  => $config_file,
-      content => $loki::compactor_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::compactor_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '22',
     }
   }
@@ -194,7 +194,7 @@ class loki::config {
   if $loki::frontend_worker_config_hash {
     concat::fragment { 'loki_frontend_worker_config':
       target  => $config_file,
-      content => $loki::frontend_worker_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::frontend_worker_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '23',
     }
   }
@@ -204,7 +204,7 @@ class loki::config {
   if $loki::table_manager_config_hash {
     concat::fragment { 'loki_table_manager_config':
       target  => $config_file,
-      content => $loki::table_manager_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::table_manager_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '24',
     }
   }
@@ -214,7 +214,7 @@ class loki::config {
   if $loki::runtime_config_hash {
     concat::fragment { 'loki_runtime_config':
       target  => $config_file,
-      content => $loki::runtime_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::runtime_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '25',
     }
   }
@@ -224,7 +224,7 @@ class loki::config {
   if $loki::tracing_config_hash {
     concat::fragment { 'loki_tracing_config':
       target  => $config_file,
-      content => $loki::tracing_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::tracing_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '26',
     }
   }
@@ -234,7 +234,7 @@ class loki::config {
   if $loki::memberlist_config_hash {
     concat::fragment { 'loki_memberlist_config':
       target  => $config_file,
-      content => $loki::memberlist_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::memberlist_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '27',
     }
   }
@@ -245,7 +245,7 @@ class loki::config {
   if $loki::query_scheduler_config_hash {
     concat::fragment { 'loki_query_scheduler_config':
       target  => $config_file,
-      content => $loki::query_scheduler_config_hash.promtail::to_yaml.promtail::strip_yaml_header,
+      content => $loki::query_scheduler_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
       order   => '28',
     }
   }
