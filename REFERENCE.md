@@ -16,6 +16,10 @@
 * `loki::install`: A short summary of the purpose of this class
 * `loki::service`: A short summary of the purpose of this class
 
+### Functions
+
+* [`loki::strip_yaml_header`](#loki--strip_yaml_header): A function to strip the --- from the beginning of a string
+
 ### Data types
 
 * [`Loki::Target`](#Loki--Target): List of loki components
@@ -370,6 +374,50 @@ Data type: `Optional[Hash]`
 Common configuration to be shared between multiple modules.
 
 Default value: `undef`
+
+## Functions
+
+### <a name="loki--strip_yaml_header"></a>`loki::strip_yaml_header`
+
+Type: Ruby 4.x API
+
+A function to strip the --- from the beginning of a string
+
+#### Examples
+
+##### 
+
+```puppet
+concat::fragment { 'loki_common_config':
+  target  => $config_file,
+  content => $loki::common_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
+  order   => '09',
+}
+```
+
+#### `loki::strip_yaml_header(String $yaml_string)`
+
+A function to strip the --- from the beginning of a string
+
+Returns: `String` Returns the string with the leading header stripped off
+
+##### Examples
+
+###### 
+
+```puppet
+concat::fragment { 'loki_common_config':
+  target  => $config_file,
+  content => $loki::common_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
+  order   => '09',
+}
+```
+
+##### `yaml_string`
+
+Data type: `String`
+
+A string that may start with the ---'s used to denote a YAML file
 
 ## Data types
 
