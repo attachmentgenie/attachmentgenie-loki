@@ -5,7 +5,7 @@ Documentation=https://github.com/grafana/loki
 [Service]
 Type=simple
 User=<%= $loki::user %>
-ExecStart=<%= $loki::bin_dir %>/loki -config.file <%= $loki::config_dir %>/loki.yaml
+ExecStart=<%= $loki::bin_dir %>/loki -config.file <%= $loki::config_dir %>/<%= $loki::config_file %>
 Restart=always
 RestartSec=30s
 

@@ -4,7 +4,7 @@
 #
 # @api private
 class loki::config {
-  $config_file = "${loki::config_dir}/loki.yaml"
+  $config_file = "${loki::config_dir}/${loki::config_file}"
 
   if $loki::manage_user {
     File[$loki::config_dir] {
