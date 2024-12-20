@@ -73,6 +73,7 @@ The following parameters are available in the `loki` class:
 
 * [`bin_dir`](#-loki--bin_dir)
 * [`config_dir`](#-loki--config_dir)
+* [`config_file`](#-loki--config_file)
 * [`data_dir`](#-loki--data_dir)
 * [`group`](#-loki--group)
 * [`install_method`](#-loki--install_method)
@@ -120,6 +121,12 @@ path to install binary file.
 Data type: `Stdlib::Absolutepath`
 
 path to install configuration file.
+
+##### <a name="-loki--config_file"></a>`config_file`
+
+Data type: `String[1]`
+
+file to install configuration in.
 
 ##### <a name="-loki--data_dir"></a>`data_dir`
 

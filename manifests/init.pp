@@ -36,6 +36,7 @@
 #
 # @param bin_dir path to install binary file.
 # @param config_dir path to install configuration file.
+# @param config_file file to install configuration in.
 # @param data_dir path where loki data will be stored.
 # @param group Group that owns loki files.
 # @param install_method How to install loki.
@@ -74,6 +75,7 @@
 class loki (
   Stdlib::Absolutepath $bin_dir,
   Stdlib::Absolutepath $config_dir,
+  String[1] $config_file,
   Stdlib::Absolutepath $data_dir,
   String[1] $group,
   Enum['archive','package'] $install_method,

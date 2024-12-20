@@ -6,6 +6,7 @@ lookup_options:
 loki::group: loki
 loki::bin_dir: '/usr/local/bin'
 loki::config_dir: '/etc/loki'
+loki::config_file: 'loki.yaml'
 loki::data_dir: '/var/lib/loki'
 loki::install_method: archive
 loki::manage_service: true
