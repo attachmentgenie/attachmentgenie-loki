@@ -249,4 +249,14 @@ class loki::config {
       order   => '28',
     }
   }
+
+  # Configures the pattern ingester.
+  # [pattern_ingester: <pattern_ingester_config>]
+  if $loki::pattern_ingester_config_hash {
+    concat::fragment { 'loki_pattern_ingester_config':
+      target  => $config_file,
+      content => $loki::pattern_ingester_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
+      order   => '29',
+    }
+  }
 }

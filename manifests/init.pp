@@ -72,6 +72,7 @@
 # @param tracing_config_hash Configuration for tracing.,
 # @param memberlist_config_hash Configuration for memberlist client. Only applies if the selected kvstore is memberlist
 # @param common_config_hash Common configuration to be shared between multiple modules.
+# @param pattern_ingester_config_hash The pattern_ingester block configures the pattern ingester.
 class loki (
   Stdlib::Absolutepath $bin_dir,
   Stdlib::Absolutepath $config_dir,
@@ -111,6 +112,7 @@ class loki (
   Optional[Hash] $tracing_config_hash = undef,
   Optional[Hash] $memberlist_config_hash = undef,
   Optional[Hash] $common_config_hash = undef,
+  Optional[Hash] $pattern_ingester_config_hash = undef,
 ) {
   if $loki::manage_service {
     $service_notify = [Service['loki']]

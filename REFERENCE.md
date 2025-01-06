@@ -109,6 +109,7 @@ The following parameters are available in the `loki` class:
 * [`tracing_config_hash`](#-loki--tracing_config_hash)
 * [`memberlist_config_hash`](#-loki--memberlist_config_hash)
 * [`common_config_hash`](#-loki--common_config_hash)
+* [`pattern_ingester_config_hash`](#-loki--pattern_ingester_config_hash)
 
 ##### <a name="-loki--bin_dir"></a>`bin_dir`
 
@@ -379,6 +380,14 @@ Default value: `undef`
 Data type: `Optional[Hash]`
 
 Common configuration to be shared between multiple modules.
+
+Default value: `undef`
+
+##### <a name="-loki--pattern_ingester_config_hash"></a>`pattern_ingester_config_hash`
+
+Data type: `Optional[Hash]`
+
+The pattern_ingester block configures the pattern ingester.
 
 Default value: `undef`
 
