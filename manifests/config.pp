@@ -259,4 +259,14 @@ class loki::config {
       order   => '29',
     }
   }
+
+  # Configures the index gateway.
+  # [index_gateway: <index_gateway_config>]
+  if $loki::index_gateway_config_hash {
+    concat::fragment { 'loki_index_gateway_config':
+      target  => $config_file,
+      content => $loki::index_gateway_config_hash.stdlib::to_yaml.loki::strip_yaml_header,
+      order   => '30',
+    }
+  }
 }

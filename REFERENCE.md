@@ -110,6 +110,7 @@ The following parameters are available in the `loki` class:
 * [`memberlist_config_hash`](#-loki--memberlist_config_hash)
 * [`common_config_hash`](#-loki--common_config_hash)
 * [`pattern_ingester_config_hash`](#-loki--pattern_ingester_config_hash)
+* [`index_gateway_config_hash`](#-loki--index_gateway_config_hash)
 
 ##### <a name="-loki--bin_dir"></a>`bin_dir`
 
@@ -388,6 +389,14 @@ Default value: `undef`
 Data type: `Optional[Hash]`
 
 The pattern_ingester block configures the pattern ingester.
+
+Default value: `undef`
+
+##### <a name="-loki--index_gateway_config_hash"></a>`index_gateway_config_hash`
+
+Data type: `Optional[Hash]`
+
+The index_gateway block configures the index gateway.
 
 Default value: `undef`
 
