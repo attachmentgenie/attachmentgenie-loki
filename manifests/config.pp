@@ -29,12 +29,18 @@ class loki::config {
   }
 
   # The module to run Loki with. Supported values
-  # all, querier, query-scheduler, table-manager, ingester, distributor
+  # all, analytics, backend, bloom-builder, bloom-compactor, bloom-gateway, bloom-planner,
+  # bloom-store, cache-generation-loader, compactor, distributor, index-gateway, ingester,
+  # ingester-querier, overrides-exporter, pattern-ingester, querier, query-frontend,
+  # query-scheduler, ruler, read, table-manager, write
+  # You can list all the available targets with the following targets :
+  # loki -config.file CONFIG_FILE_PATH -list-targets
   # [target: <string> | default = "all"]
   if $loki::target {
+    $formatted_target = join($loki::target, ',')
     concat::fragment { 'loki_config_target':
       target  => $config_file,
-      content => "target: ${loki::target}\n",
+      content => "target: ${formatted_target}\n",
       order   => '02',
     }
   }
