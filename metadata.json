@@ -1,6 +1,6 @@
 {
   "name": "attachmentgenie-loki",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "author": "attachmentgenie",
   "summary": "Like Prometheus, but for logs",
   "license": "Apache-2.0",
@@ -22,7 +22,7 @@
     },
     {
       "name": "puppet/systemd",
-      "version_requirement": ">= 1.1.1 < 8.0.0"
+      "version_requirement": ">= 1.1.1 < 9.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -36,15 +36,8 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "20.04",
-        "22.04"
-      ]
-    },
-    {
-      "operatingsystem": "CentOS",
-      "operatingsystemrelease": [
-        "7",
-        "8"
+        "22.04",
+        "24.04"
       ]
     }
   ],
@@ -54,7 +47,7 @@
       "version_requirement": ">= 7.9.0 < 9.0.0"
     }
   ],
-  "pdk-version": "3.2.0",
-  "template-url": "pdk-default#3.2.0",
-  "template-ref": "tags/3.2.0-0-gb257ef1"
+  "pdk-version": "3.4.0",
+  "template-url": "pdk-default#3.4.0",
+  "template-ref": "tags/3.4.0-0-gd3cc13f"
 }
