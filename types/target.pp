@@ -1,16 +1,26 @@
 # @summary List of loki components
-type Loki::Target = Enum[
+type Loki::Target = Array[Enum[
   'all',
+  'analytics',
+  'backend',
+  'bloom-builder',
+  'bloom-compactor',
+  'bloom-gateway',
+  'bloom-planner',
+  'bloom-store',
+  'cache-generation-loader',
   'compactor',
   'distributor',
-  'ingester',
-  'querier',
-  'query-scheduler',
-  'ingester-querier',
-  'query-frontend',
   'index-gateway',
+  'ingester',
+  'ingester-querier',
+  'overrides-exporter',
+  'pattern-ingester',
+  'querier',
+  'query-frontend',
+  'query-scheduler',
   'ruler',
-  'table-manager',
   'read',
+  'table-manager',
   'write' # lint:ignore:trailing_comma
-]
+]]

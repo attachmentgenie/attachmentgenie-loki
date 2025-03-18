@@ -450,5 +450,4 @@ A string that may start with the ---'s used to denote a YAML file
 
 List of loki components
 
-Alias of `Enum['all', 'compactor', 'distributor', 'ingester', 'querier', 'query-scheduler', 'ingester-querier', 'query-frontend', 'index-gateway', 'ruler', 'table-manager', 'read', 'write']`
-
+Alias of `Array[Enum['all', 'analytics', 'backend', 'bloom-builder', 'bloom-compactor', 'bloom-gateway', 'bloom-planner', 'bloom-store', 'cache-generation-loader', 'compactor, 'distributor', 'index-gateway', 'ingester', 'ingester-querier', 'overrides-exporter', 'pattern-ingester', 'querier', 'query-frontend', 'query-scheduler', 'ruler', 'read', 'table-manager', 'write']]
